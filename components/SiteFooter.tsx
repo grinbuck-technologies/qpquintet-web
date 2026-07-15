@@ -1,6 +1,7 @@
 import { siteConfig, tradeFacts } from "@/lib/site-config";
 
-export default function SiteFooter() {
+/** Site-wide footer with the company name, origin/destination facts, and copyright line. */
+export function SiteFooter() {
   const year = new Date().getFullYear();
 
   return (

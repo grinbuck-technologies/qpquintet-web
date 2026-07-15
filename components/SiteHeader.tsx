@@ -2,7 +2,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { navLinks, routes, siteConfig } from "@/lib/site-config";
 
-export default function SiteHeader() {
+/** Sticky site header with the wordmark, primary nav links, and the bulk-order CTA. */
+export function SiteHeader() {
   return (
     <header className="sticky top-0 z-50 translate-z-0 will-change-transform border-b border-line bg-paper/80 backdrop-blur">
       <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">

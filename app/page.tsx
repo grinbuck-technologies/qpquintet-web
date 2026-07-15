@@ -1,6 +1,8 @@
 import Link from "next/link";
 import { routes, siteConfig, tradeFacts } from "@/lib/site-config";
+import { ArrowLink } from "@/components/ArrowLink";
 
+/** Homepage: hero, trade-facts strip, product teaser, buyer/business split, and about teaser. */
 export default function Home() {
   return (
     <>
@@ -11,21 +13,15 @@ export default function Home() {
 
         <p className="mt-8 max-w-2xl text-lg text-ink-soft">
           {siteConfig.name} is an import/export company. Currently, that
-          means spices and masalas — sold through affiliated retailers and
-          available direct via bulk order — with the range expanding over
-          time.
+          means spices and masalas, sold through affiliated retailers across
+          British Columbia, with direct bulk ordering for businesses coming
+          soon and the range expanding over time.
         </p>
 
         <div className="mt-10 flex flex-wrap gap-4">
           <Link
-            href={routes.bulkOrder}
-            className="bg-accent px-6 py-3 text-sm font-medium uppercase tracking-wide text-white transition-colors hover:bg-accent-deep"
-          >
-            Explore Bulk Order
-          </Link>
-          <Link
             href={routes.retailers}
-            className="border border-ink px-6 py-3 text-sm font-medium uppercase tracking-wide text-ink transition-colors hover:bg-ink hover:text-paper"
+            className="bg-accent px-6 py-3 text-sm font-medium uppercase tracking-wide text-white transition-colors hover:bg-accent-deep"
           >
             Find a Retailer
           </Link>
@@ -33,7 +29,7 @@ export default function Home() {
       </section>
 
       <section className="bg-ink text-paper">
-        <div className="mx-auto grid max-w-6xl grid-cols-2 gap-8 px-6 py-10 font-mono text-sm md:grid-cols-4">
+        <div className="mx-auto grid max-w-6xl grid-cols-1 gap-8 px-6 py-10 font-mono text-sm sm:grid-cols-3">
           {Object.values(tradeFacts).map((fact) => (
             <span key={fact.label}>
               {fact.label} — {fact.value}
@@ -75,24 +71,15 @@ export default function Home() {
             <p className="mt-3 text-ink-soft">
               Find our products stocked at an affiliated retailer near you.
             </p>
-            <Link
-              href={routes.retailers}
-              className="mt-6 inline-block text-sm font-medium uppercase tracking-wide text-accent hover:text-accent-deep"
-            >
-              Find a retailer →
-            </Link>
+            <ArrowLink href={routes.retailers}>Find a retailer</ArrowLink>
           </div>
           <div className="p-10">
             <h3 className="font-display text-2xl">For businesses</h3>
             <p className="mt-3 text-ink-soft">
-              Order direct, starting at a minimum quantity per item.
+              Direct bulk ordering is on its way. Get in touch and we&apos;ll
+              let you know as soon as it&apos;s live.
             </p>
-            <Link
-              href={routes.bulkOrder}
-              className="mt-6 inline-block text-sm font-medium uppercase tracking-wide text-accent hover:text-accent-deep"
-            >
-              Start a bulk order →
-            </Link>
+            <ArrowLink href={routes.contact}>Get in touch</ArrowLink>
           </div>
         </div>
       </section>
@@ -104,12 +91,7 @@ export default function Home() {
           Canada, overseeing sourcing on one side of the Pacific and
           distribution on the other.
         </p>
-        <Link
-          href={routes.about}
-          className="mt-6 inline-block text-sm font-medium uppercase tracking-wide text-accent hover:text-accent-deep"
-        >
-          More about us →
-        </Link>
+        <ArrowLink href={routes.about}>More about us</ArrowLink>
       </section>
     </>
   );

@@ -1,11 +1,13 @@
 import type { Metadata } from "next";
 import { siteConfig } from "@/lib/site-config";
+import { ComingSoonNotice } from "@/components/ComingSoonNotice";
 
 export const metadata: Metadata = {
   title: "Retailers",
   description: `Find ${siteConfig.name} products stocked at affiliated retailers.`,
 };
 
+/** Retailers page: intro copy plus a coming-soon notice until partnerships are confirmed. */
 export default function RetailersPage() {
   return (
     <div className="mx-auto max-w-6xl px-6 py-16 md:py-24">
@@ -17,8 +19,8 @@ export default function RetailersPage() {
         confirmed.
       </p>
 
-      <div className="mt-12 border border-line bg-surface px-6 py-8 text-ink-soft">
-        The retailer list is pending confirmed partnerships.
+      <div className="mt-12 max-w-2xl">
+        <ComingSoonNotice message="We're finalizing our retailer partnerships across British Columbia." />
       </div>
     </div>
   );

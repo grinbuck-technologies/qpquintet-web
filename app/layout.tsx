@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 import { Cormorant_Garamond, Inter, IBM_Plex_Mono } from "next/font/google";
 import "./globals.css";
-import SmoothScroll from "@/components/SmoothScroll";
-import SiteHeader from "@/components/SiteHeader";
-import SiteFooter from "@/components/SiteFooter";
+import { SmoothScroll } from "@/components/SmoothScroll";
+import { SiteHeader } from "@/components/SiteHeader";
+import { SiteFooter } from "@/components/SiteFooter";
 import { siteConfig } from "@/lib/site-config";
 
 const cormorantGaramond = Cormorant_Garamond({
@@ -32,6 +32,7 @@ export const metadata: Metadata = {
   description: siteConfig.description,
 };
 
+/** Root App Router layout: fonts, smooth scroll, and the shared header/footer chrome. */
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -40,7 +41,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${cormorantGaramond.variable} ${inter.variable} ${ibmPlexMono.variable} h-full antialiased`}
+      className={`${cormorantGaramond.variable} ${inter.variable} ${ibmPlexMono.variable} min-h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
         <SmoothScroll />
