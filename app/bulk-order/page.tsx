@@ -1,26 +1,23 @@
 import type { Metadata } from "next";
-import { siteConfig } from "@/lib/site-config";
-import { ComingSoonNotice } from "@/components/ComingSoonNotice";
+import { routes, siteConfig } from "@/lib/site-config";
+import { ComingSoonPage } from "@/components/ComingSoonPage";
+import { ArrowLink } from "@/components/ArrowLink";
 
 export const metadata: Metadata = {
   title: "Bulk Order",
-  description: `Order direct from ${siteConfig.name}, starting at a minimum quantity per item.`,
+  description: `Direct bulk ordering from ${siteConfig.name} is in development.`,
 };
 
 /** Bulk order page: intro copy plus a coming-soon notice until direct ordering launches. */
 export default function BulkOrderPage() {
   return (
-    <div className="mx-auto max-w-6xl px-6 py-16 md:py-24">
-      <h1 className="font-display text-5xl md:text-7xl">Bulk Order</h1>
-
-      <p className="mt-6 max-w-2xl text-ink-soft">
-        Businesses will be able to order direct from us, starting at a
-        minimum quantity per item, once bulk ordering launches.
-      </p>
-
-      <div className="mt-12 max-w-2xl">
-        <ComingSoonNotice message="Direct bulk ordering for businesses is launching soon." />
-      </div>
-    </div>
+    <ComingSoonPage
+      title="Bulk Order"
+      intro="Direct bulk ordering for businesses is part of our initial trade-line build-out."
+      noticeMessage="Bulk ordering is in development."
+      noticeSecondaryMessage="Get in touch and we'll notify you as soon as it's live."
+    >
+      <ArrowLink href={routes.contact}>Get in touch</ArrowLink>
+    </ComingSoonPage>
   );
 }

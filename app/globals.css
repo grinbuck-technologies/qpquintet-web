@@ -1,12 +1,14 @@
 @import "tailwindcss";
 
 :root {
-  --paper: #fafaf8;
-  --surface: #f2f1ee;
-  --ink: #1a1a1a;
-  --ink-soft: #5c5c5c;
-  --line: #e2e0db;
-  --accent: #C8102E;
+  --paper: #f4f3f0;
+  --surface: #ebe9e5;
+  --ink: #17181a;
+  --ink-soft: #5a5d63;
+  --line: #dddad4;
+  --navy: #1a2744;
+  --navy-soft: #3c4a6b;
+  --accent: #c8102e;
   --accent-deep: #7a0010;
 }
 
@@ -16,14 +18,22 @@
   --color-ink: var(--ink);
   --color-ink-soft: var(--ink-soft);
   --color-line: var(--line);
+  --color-navy: var(--navy);
+  --color-navy-soft: var(--navy-soft);
   --color-accent: var(--accent);
   --color-accent-deep: var(--accent-deep);
-  --font-sans: var(--font-body);
+  --font-sans: var(--font-display);
   --font-mono: var(--font-mono-data);
 }
 
 body {
   background: var(--paper);
+  background-image: radial-gradient(
+    ellipse 120% 60% at 50% -10%,
+    color-mix(in srgb, var(--navy) 6%, transparent),
+    transparent
+  );
+  background-attachment: fixed;
   color: var(--ink);
   font-family: var(--font-sans), Arial, Helvetica, sans-serif;
 }
@@ -32,23 +42,50 @@ h1,
 h2,
 h3,
 .font-display {
-  font-family: var(--font-display), serif;
+  font-family: var(--font-sans), sans-serif;
 }
 
-.manifest-row {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  border-bottom: 1px solid var(--line);
-  padding: 0.5rem 0;
+.font-wordmark {
+  font-family: var(--font-wordmark), Georgia, serif;
+}
+
+.font-label {
+  font-family: var(--font-label), Arial, Helvetica, sans-serif;
+}
+
+.text-gradient-accent {
+  background: linear-gradient(135deg, var(--accent) 0%, var(--accent-deep) 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
 }
 
 .font-mono {
   font-variant-numeric: tabular-nums;
 }
 
+.shadow-raised {
+  box-shadow:
+    0 1px 2px rgba(23, 24, 26, 0.06),
+    0 8px 24px -12px rgba(23, 24, 26, 0.18);
+}
+
+/* Continuous dash flow suggesting movement along each trade route; disabled via prefers-reduced-motion below and by the TradeGlobe component itself. */
+.trade-route-dashed {
+  stroke-dasharray: 10 9;
+  animation: trade-route-flow 7s linear infinite;
+}
+
+@keyframes trade-route-flow {
+  to {
+    stroke-dashoffset: -190;
+  }
+}
+
 a:focus-visible,
-button:focus-visible {
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible {
   outline: 2px solid var(--accent);
   outline-offset: 3px;
 }

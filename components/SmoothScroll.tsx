@@ -2,6 +2,7 @@
 
 import { useEffect } from "react";
 import Lenis from "lenis";
+import { REDUCED_MOTION_QUERY } from "@/lib/reduced-motion";
 
 let activeLenis: Lenis | null = null;
 
@@ -12,7 +13,7 @@ let activeLenis: Lenis | null = null;
  */
 export function SmoothScroll() {
   useEffect(() => {
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    if (window.matchMedia(REDUCED_MOTION_QUERY).matches) {
       return;
     }
 

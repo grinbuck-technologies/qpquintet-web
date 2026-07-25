@@ -1,9 +1,21 @@
+/**
+ * CONTENT RULE: Do not name "spices and masalas" (or any other specific
+ * commodity) as the company's current focus, primary activity, or defining
+ * category anywhere on the site outside of the Focus Areas section's
+ * explicit "starting point, not our identity" framing. The company's
+ * positioning is deliberately category-agnostic. When writing new copy,
+ * do not reintroduce commodity-specific framing as a shorthand for "what
+ * the company does."
+ */
+
 /** Core company identity used for page titles, metadata, and body copy. */
 export const siteConfig = {
   name: "QP Quintet Ventures Canada Inc.",
-  tagline: "Import & Export",
+  tagline: "Trade & Investment",
   description:
-    "QP Quintet Ventures Canada Inc. imports goods from East India to British Columbia, currently spices and masalas, supplying affiliated retailers and fulfilling bulk orders direct.",
+    "QP Quintet Ventures Canada Inc. is a bidirectional trade and investment company building the commercial channels, distribution infrastructure, and capital pathways connecting Canada and India. Our first trade lines are in active development, with capability designed to extend across categories as opportunity leads.",
+  contactEmail: "hello@qpquintet.ca",
+  headOfficeLocation: "Victoria, Canada",
 } as const;
 
 /** Canonical route paths, referenced instead of hardcoded strings throughout the app. */
@@ -11,7 +23,6 @@ export const routes = {
   home: "/",
   about: "/about",
   bulkOrder: "/bulk-order",
-  retailers: "/retailers",
   contact: "/contact",
 } as const;
 
@@ -24,7 +35,6 @@ export interface NavLink {
 /** Links rendered in the primary site navigation, in display order. */
 export const navLinks: NavLink[] = [
   { href: routes.about, label: "About" },
-  { href: routes.retailers, label: "Retailers" },
   { href: routes.contact, label: "Contact" },
 ];
 
@@ -36,7 +46,5 @@ export interface TradeFact {
 
 /** Trade facts displayed in the homepage and footer facts strips. */
 export const tradeFacts = {
-  origin: { label: "Origin", value: "Kolkata, IN" },
-  destination: { label: "Destination", value: "British Columbia, CA" },
-  currentCategory: { label: "Current Category", value: "Spices & Masalas" },
+  corridor: { label: "Trade Corridor", value: "Canada ⇆ India" },
 } satisfies Record<string, TradeFact>;

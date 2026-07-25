@@ -1,97 +1,126 @@
-import Link from "next/link";
 import { routes, siteConfig, tradeFacts } from "@/lib/site-config";
+import { SectionHeading } from "@/components/SectionHeading";
+import { TradeGlobe } from "@/components/TradeGlobe";
 import { ArrowLink } from "@/components/ArrowLink";
 
-/** Homepage: hero, trade-facts strip, product teaser, buyer/business split, and about teaser. */
+/** A single capability column shown in the "Focus Areas" section. */
+interface FocusArea {
+  label: string;
+  heading: string;
+  body: string;
+}
+
+/** The two ends of QP Quintet's trade mandate — an active focus and the wider room to grow into. */
+const FOCUS_AREAS: FocusArea[] = [
+  {
+    label: "Agri-Food & Commodities",
+    heading: "Capability, Not a Category",
+    body: `${siteConfig.name} is built to source across agri-food and commodities, wherever the trade economics between Canada and India favor movement. We are not locked into a single product line. Spices and masalas are our starting point, with retail relationships in Canada currently in development and the same sourcing discipline carried through as the category set expands.`,
+  },
+  {
+    label: "Natural Resources & Beyond",
+    heading: "A Wider Mandate by Design",
+    body: "The same infrastructure extends to natural resources and other categories as the corridor matures. We are positioned to expand wherever the strongest trade opportunity emerges, not according to a fixed roadmap. The underlying infrastructure — sourcing relationships, logistics, compliance, and capital structuring — is category-agnostic by design, built to extend rather than be rebuilt.",
+  },
+];
+
+/** Homepage: hero with the animated trade-route globe, positioning statement, focus areas, and contact. */
 export default function Home() {
   return (
     <>
-      <section className="mx-auto max-w-6xl px-6 py-20 md:py-32">
-        <h1 className="font-display max-w-4xl text-6xl leading-none md:text-8xl">
-          We move goods from East India to British Columbia.
-        </h1>
+      <section className="mx-auto max-w-6xl px-6 pt-16 pb-10 md:pt-20 md:pb-14">
+        <div className="grid grid-cols-1 items-center gap-12 md:grid-cols-2 md:gap-16">
+          <div>
+            <p className="font-label flex items-center gap-2 text-xs font-bold uppercase tracking-[0.3em] text-ink-soft">
+              <span
+                aria-hidden="true"
+                className="inline-block h-1.5 w-1.5 shrink-0 rounded-full bg-gradient-to-br from-accent to-accent-deep"
+              />
+              Canada ⇆ India — Trade &amp; Investment
+            </p>
 
-        <p className="mt-8 max-w-2xl text-lg text-ink-soft">
-          {siteConfig.name} is an import/export company. Currently, that
-          means spices and masalas, sold through affiliated retailers across
-          British Columbia, with direct bulk ordering for businesses coming
-          soon and the range expanding over time.
-        </p>
+            <h1 className="font-display mt-6 text-6xl font-semibold leading-[0.95] md:text-7xl">
+              Building bridges between economies.
+            </h1>
 
-        <div className="mt-10 flex flex-wrap gap-4">
-          <Link
-            href={routes.retailers}
-            className="bg-accent px-6 py-3 text-sm font-medium uppercase tracking-wide text-white transition-colors hover:bg-accent-deep"
-          >
-            Find a Retailer
-          </Link>
+            <p className="mt-8 max-w-xl text-lg text-ink-soft">
+              {siteConfig.name} is building the commercial channels,
+              distribution infrastructure, and capital pathways that will
+              move goods and capital between Canada and India. We are
+              engineering a trade corridor, from day one, to run both ways.
+            </p>
+          </div>
+
+          <div className="mx-auto aspect-square w-full max-w-md">
+            <TradeGlobe />
+          </div>
         </div>
       </section>
 
       <section className="bg-ink text-paper">
-        <div className="mx-auto grid max-w-6xl grid-cols-1 gap-8 px-6 py-10 font-mono text-sm sm:grid-cols-3">
+        <div className="mx-auto max-w-6xl px-6 py-6 text-center font-mono text-xs uppercase tracking-widest">
           {Object.values(tradeFacts).map((fact) => (
-            <span key={fact.label}>
-              {fact.label} — {fact.value}
+            <span key={fact.label} className="text-paper/70">
+              <span className="text-paper/40">{fact.label}</span> —{" "}
+              {fact.value}
             </span>
           ))}
         </div>
       </section>
 
-      <section className="mx-auto max-w-6xl px-6 py-16 md:py-24">
-        <h2 className="font-display text-3xl md:text-5xl">What we move</h2>
-
-        <div className="mt-10 grid grid-cols-1 gap-6 md:grid-cols-3">
-          <div className="border border-line p-8 transition-colors hover:border-ink">
-            <h3 className="font-display text-xl">Spices</h3>
-            <p className="mt-3 text-sm text-ink-soft">
-              Whole and ground spices — assortment to be finalized.
-            </p>
-          </div>
-          <div className="border border-line p-8 transition-colors hover:border-ink">
-            <h3 className="font-display text-xl">Masalas</h3>
-            <p className="mt-3 text-sm text-ink-soft">
-              Blended spice mixes — lineup to be finalized.
-            </p>
-          </div>
-          <div className="border border-line p-8 transition-colors hover:border-ink">
-            <h3 className="font-display text-xl">Expanding</h3>
-            <p className="mt-3 text-sm text-ink-soft">
-              The catalog will grow beyond spices and masalas over time.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      <section className="mx-auto max-w-6xl px-6 pb-16 md:pb-24">
-        <h2 className="sr-only">Get started</h2>
-        <div className="grid grid-cols-1 border border-line md:grid-cols-2">
-          <div className="border-b border-line p-10 md:border-b-0 md:border-r">
-            <h3 className="font-display text-2xl">For everyday buyers</h3>
-            <p className="mt-3 text-ink-soft">
-              Find our products stocked at an affiliated retailer near you.
-            </p>
-            <ArrowLink href={routes.retailers}>Find a retailer</ArrowLink>
-          </div>
-          <div className="p-10">
-            <h3 className="font-display text-2xl">For businesses</h3>
-            <p className="mt-3 text-ink-soft">
-              Direct bulk ordering is on its way. Get in touch and we&apos;ll
-              let you know as soon as it&apos;s live.
-            </p>
-            <ArrowLink href={routes.contact}>Get in touch</ArrowLink>
-          </div>
-        </div>
-      </section>
-
-      <section className="mx-auto max-w-6xl px-6 pb-16 md:pb-24">
-        <h2 className="font-display text-3xl md:text-5xl">About</h2>
-        <p className="mt-6 max-w-2xl text-ink-soft">
-          {siteConfig.name} is run by directors based across India and
-          Canada, overseeing sourcing on one side of the Pacific and
-          distribution on the other.
+      <section className="mx-auto max-w-6xl px-6 py-12 md:py-16">
+        <SectionHeading label="Positioning" title="A corridor, not a one-way channel." />
+        <p className="mt-6 max-w-3xl text-lg leading-relaxed text-ink-soft">
+          {siteConfig.name} is a bidirectional trade and investment vehicle,
+          not an importer or exporter alone. We are building the commercial
+          relationships, distribution infrastructure, and capital flow that
+          will move goods and investment both ways across the Canada–India
+          corridor, positioned to capitalize on the India-Canada
+          Comprehensive Economic Partnership Agreement (CEPA) as it
+          accelerates bilateral trade. Our first trade lines are in active
+          development.
         </p>
-        <ArrowLink href={routes.about}>More about us</ArrowLink>
+        <p className="mt-4 max-w-3xl text-lg leading-relaxed text-ink-soft">
+          That means two coordinated functions, not one: on the trade side,
+          sourcing, quality assurance, and logistics that get products to
+          market; on the investment side, capital and partnership structures
+          that help promising businesses on either side of the Pacific scale
+          into the other market. Both functions are designed to run in
+          either direction as the corridor matures.
+        </p>
+      </section>
+
+      <section className="mx-auto max-w-6xl px-6 py-12 md:py-16">
+        <SectionHeading
+          label="Focus Areas"
+          title="Wherever the trade opportunity is strongest."
+        />
+        <div className="mt-8 grid grid-cols-1 gap-6 md:grid-cols-2">
+          {FOCUS_AREAS.map((area) => (
+            <div
+              key={area.label}
+              className="shadow-raised border border-line bg-surface p-8"
+            >
+              <p className="font-mono text-[11px] uppercase tracking-widest text-navy">
+                {area.label}
+              </p>
+              <h3 className="font-display mt-3 text-xl md:text-2xl">
+                {area.heading}
+              </h3>
+              <p className="mt-3 text-sm text-ink-soft">{area.body}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-6xl px-6 pb-12 md:pb-16">
+        <SectionHeading label="Contact" title="Let's open a corridor together." />
+        <p className="mt-6 max-w-2xl text-lg text-ink-soft">
+          If you represent a producer, distributor, investor, or trade office
+          in Canada or India, we want to talk cross-border commerce, not
+          small talk.
+        </p>
+        <ArrowLink href={routes.contact}>Get in touch</ArrowLink>
       </section>
     </>
   );

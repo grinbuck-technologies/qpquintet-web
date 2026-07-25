@@ -1,6 +1,4 @@
-"use client";
-
-import { useId, useState } from "react";
+import { PersonAvatar } from "@/components/PersonAvatar";
 
 interface Person {
   name: string;
@@ -10,7 +8,7 @@ interface Person {
   link?: { label: string; href: string };
 }
 
-const indiaTeam: Person[] = [
+const INDIA_TEAM: Person[] = [
   {
     name: "Alokesh Banerjee",
     title: "Co-Founder & COO",
@@ -54,7 +52,7 @@ const indiaTeam: Person[] = [
   },
 ];
 
-const canadaTeam: Person[] = [
+const CANADA_TEAM: Person[] = [
   {
     name: "Sarshad Abubaker",
     title: "Co-Founder & President",
@@ -88,132 +86,95 @@ function FounderLink({ label, href }: { label: string; href: string }) {
   );
 }
 
-function TeamEntry({ person, index }: { person: Person; index: number }) {
-  const isEven = index % 2 === 1;
+interface PersonCardProps {
+  person: Person;
+  borderSide: "left" | "right";
+}
+
+/** A single person's card: avatar, name, title, bio, credentials, and an optional external link. */
+function PersonCard({ person, borderSide }: PersonCardProps) {
+  const borderClasses =
+    borderSide === "left"
+      ? "border-l-2 border-navy pl-6 md:pl-8"
+      : "border-r-2 border-navy pr-6 md:pr-8";
 
   return (
-    <div className={`py-12 md:py-16 ${isEven ? "flex justify-end" : ""}`}>
-      <div
-        className={`max-w-2xl ${
-          isEven
-            ? "border-r-2 border-accent pr-6 text-right md:pr-10"
-            : "border-l-2 border-accent pl-6 md:pl-10"
-        }`}
-      >
-        <h3 className="font-display text-3xl md:text-4xl">{person.name}</h3>
-        <p className="font-mono mt-2 text-sm uppercase tracking-wide text-accent">
-          {person.title}
-        </p>
-        <p className="mt-5 text-ink-soft">{person.bio}</p>
-        <div
-          className={`font-mono mt-5 flex flex-wrap gap-x-3 gap-y-1 text-xs uppercase tracking-widest text-ink-soft ${
-            isEven ? "justify-end" : ""
-          }`}
-        >
-          {person.meta.map((item, i) => (
-            <span key={item} className="flex items-center gap-x-3">
-              {i > 0 && <span aria-hidden="true">·</span>}
-              {item}
+    <div className={borderClasses}>
+      <PersonAvatar name={person.name} />
+      <h3 className="font-display mt-5 text-2xl md:text-3xl">{person.name}</h3>
+      <p className="font-label mt-1 text-xs font-bold uppercase tracking-wide text-accent">
+        {person.title}
+      </p>
+      <p className="mt-4 text-ink-soft">{person.bio}</p>
+      <div className="font-mono mt-4 flex flex-wrap gap-x-3 gap-y-1 text-xs uppercase tracking-widest text-ink-soft">
+        {person.meta.map((item, i) => (
+          <span key={item} className="flex items-center gap-x-3">
+            {i > 0 && <span aria-hidden="true">·</span>}
+            {item}
+          </span>
+        ))}
+      </div>
+      {person.link && (
+        <FounderLink label={person.link.label} href={person.link.href} />
+      )}
+    </div>
+  );
+}
+
+interface WingSectionProps {
+  index: string;
+  name: string;
+  cities: string[];
+  team: Person[];
+  borderSide: "left" | "right";
+}
+
+/** A numbered wing header (index, name, city list) followed by its person-card grid. */
+function WingSection({ index, name, cities, team, borderSide }: WingSectionProps) {
+  return (
+    <section className="py-12 md:py-16">
+      <div className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-2 border-b border-line pb-6">
+        <div className="flex items-baseline gap-4">
+          <span className="font-mono text-sm text-accent">{index}</span>
+          <h2 className="font-display text-3xl md:text-5xl">{name}</h2>
+        </div>
+        <p className="font-mono text-xs uppercase tracking-widest text-ink-soft">
+          {cities.map((city, i) => (
+            <span key={city}>
+              {i > 0 && " · "}
+              {city}
             </span>
           ))}
-        </div>
-        {person.link && (
-          <FounderLink label={person.link.label} href={person.link.href} />
-        )}
+        </p>
       </div>
-    </div>
-  );
-}
 
-function ChevronIcon({ open }: { open: boolean }) {
-  return (
-    <svg
-      viewBox="0 0 24 24"
-      className={`h-5 w-5 shrink-0 transition-transform duration-300 ease-in-out ${
-        open ? "rotate-180" : "rotate-0"
-      }`}
-      fill="none"
-      stroke="currentColor"
-      strokeWidth={1.5}
-      aria-hidden="true"
-    >
-      <path d="M6 9l6 6 6-6" strokeLinecap="square" />
-    </svg>
-  );
-}
-
-function WingAccordion({
-  label,
-  team,
-  open,
-  onToggle,
-}: {
-  label: string;
-  team: Person[];
-  open: boolean;
-  onToggle: () => void;
-}) {
-  const panelId = useId();
-
-  return (
-    <div className="border-b border-line">
-      <h2>
-        <button
-          type="button"
-          onClick={onToggle}
-          aria-expanded={open}
-          aria-controls={panelId}
-          className="flex w-full items-center justify-between gap-6 bg-ink px-6 py-6 text-left text-paper transition-colors hover:bg-ink/90 md:px-10 md:py-8"
-        >
-          <span className="flex flex-wrap items-baseline gap-x-4 gap-y-1">
-            <span className="font-mono text-sm uppercase tracking-wide md:text-base">
-              {label}
-            </span>
-            <span className="font-mono text-xs uppercase tracking-widest text-paper/60">
-              {team.length} team {team.length === 1 ? "member" : "members"}
-            </span>
-          </span>
-          <ChevronIcon open={open} />
-        </button>
-      </h2>
-
-      <div
-        id={panelId}
-        className={`grid transition-[grid-template-rows] duration-500 ease-in-out ${
-          open ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
-        }`}
-      >
-        <div className="overflow-hidden">
-          <div className="divide-y divide-line px-6 md:px-10">
-            {team.map((person, index) => (
-              <TeamEntry key={person.name} person={person} index={index} />
-            ))}
-          </div>
-        </div>
+      <div className="mt-10 grid grid-cols-1 gap-10 md:grid-cols-2 md:gap-x-12 md:gap-y-14">
+        {team.map((person) => (
+          <PersonCard key={person.name} person={person} borderSide={borderSide} />
+        ))}
       </div>
-    </div>
+    </section>
   );
 }
 
-/** India/Canada wing accordion for the About page, each toggleable independently and closed by default. */
+/** India/Canada wing sections for the About page, always shown together in full. */
 export function AboutTeams() {
-  const [indiaOpen, setIndiaOpen] = useState(false);
-  const [canadaOpen, setCanadaOpen] = useState(false);
-
   return (
     <div className="mx-auto max-w-6xl px-6">
-      <div className="border-t border-line">
-        <WingAccordion
-          label="India Wing"
-          team={indiaTeam}
-          open={indiaOpen}
-          onToggle={() => setIndiaOpen((v) => !v)}
+      <div className="divide-y divide-line border-t border-line">
+        <WingSection
+          index="01"
+          name="India Wing"
+          cities={["Kolkata", "Gurugram"]}
+          team={INDIA_TEAM}
+          borderSide="left"
         />
-        <WingAccordion
-          label="Canada Wing"
-          team={canadaTeam}
-          open={canadaOpen}
-          onToggle={() => setCanadaOpen((v) => !v)}
+        <WingSection
+          index="02"
+          name="Canada Wing"
+          cities={["Victoria"]}
+          team={CANADA_TEAM}
+          borderSide="right"
         />
       </div>
     </div>

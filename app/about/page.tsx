@@ -4,10 +4,10 @@ import { AboutTeams } from "./AboutTeams";
 
 export const metadata: Metadata = {
   title: "About",
-  description: `Learn about ${siteConfig.name}, an import/export company shipping goods from East India to British Columbia.`,
+  description: `Learn about ${siteConfig.name}, a Canada-India trade and investment company connecting businesses across both countries.`,
 };
 
-/** About page: hero intro followed by the India/Canada team accordion. */
+/** About page: hero intro followed by the India/Canada wing sections. */
 export default function AboutPage() {
   return (
     <div>
@@ -17,9 +17,9 @@ export default function AboutPage() {
         </h1>
 
         <p className="mt-8 max-w-2xl text-lg text-ink-soft">
-          {siteConfig.name} is an import/export company connecting East
-          India to British Columbia, run by two teams working on either end
-          of that route.
+          {siteConfig.name} is a Canada-India trade and investment company,
+          run by two teams working across both countries — one in India, one
+          in Canada.
         </p>
       </section>
 

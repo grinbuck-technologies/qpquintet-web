@@ -1,21 +1,29 @@
 import type { Metadata } from "next";
-import { Cormorant_Garamond, Inter, IBM_Plex_Mono } from "next/font/google";
+import { Public_Sans, Cormorant_Garamond, Noto_Sans, IBM_Plex_Mono } from "next/font/google";
 import "./globals.css";
 import { SmoothScroll } from "@/components/SmoothScroll";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
 import { siteConfig } from "@/lib/site-config";
 
-const cormorantGaramond = Cormorant_Garamond({
+const publicSans = Public_Sans({
   variable: "--font-display",
   subsets: ["latin"],
-  weight: ["300", "600"],
+  weight: ["400", "500", "600", "700"],
 });
 
-const inter = Inter({
-  variable: "--font-body",
+/** Reserved for the live "QP" wordmark mark, matching the Cormorant Garamond + red gradient baked into /public/logo. */
+const cormorantGaramond = Cormorant_Garamond({
+  variable: "--font-wordmark",
   subsets: ["latin"],
-  weight: ["400", "500", "600"],
+  weight: ["600"],
+});
+
+/** Used for section eyebrow labels (e.g. POSITIONING, FOCUS AREAS) — bolder and more structural than the body font. */
+const notoSans = Noto_Sans({
+  variable: "--font-label",
+  subsets: ["latin"],
+  weight: ["400", "700"],
 });
 
 const ibmPlexMono = IBM_Plex_Mono({
@@ -41,7 +49,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${cormorantGaramond.variable} ${inter.variable} ${ibmPlexMono.variable} min-h-full antialiased`}
+      className={`${publicSans.variable} ${cormorantGaramond.variable} ${notoSans.variable} ${ibmPlexMono.variable} min-h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
         <SmoothScroll />
