@@ -75,9 +75,9 @@ export function TradeGlobe() {
         <ellipse cx="200" cy="200" rx="150" ry="12" />
       </g>
 
-      {/* Canada -> India */}
+      {/* Canada -> India: endpoints match the CANADA (95,165) and INDIA (305,225) dots exactly; control point bows the arc up and slightly left. */}
       <path
-        d="M 90 172 Q 195 110 300 232"
+        d="M 95 165 Q 190 95 305 225"
         fill="none"
         stroke="url(#tradeRouteGradient)"
         strokeWidth="3"
@@ -85,9 +85,9 @@ export function TradeGlobe() {
         className={reducedMotion ? undefined : "trade-route-dashed"}
       />
 
-      {/* India -> Canada: a distinct, offset curve (different bulge height) so the two routes read as two lanes rather than one retraced line. */}
+      {/* India -> Canada: a distinct, offset curve (different control point) so the two routes read as two lanes rather than one retraced line. Endpoints match the INDIA (305,225) and CANADA (95,165) dots exactly; control point bows the arc down and slightly right. */}
       <path
-        d="M 310 218 Q 205 90 100 158"
+        d="M 305 225 Q 210 135 95 165"
         fill="none"
         stroke="url(#tradeRouteGradientMuted)"
         strokeWidth="3"
@@ -97,13 +97,13 @@ export function TradeGlobe() {
 
       <g className="fill-ink font-mono">
         <circle cx="95" cy="165" r="5" className="fill-accent" />
-        {/* Offset up and to the left of the dot, clear of both routes converging around (90-100, 158-172). */}
+        {/* Offset up and to the left of the dot, clear of both routes converging at (95, 165). */}
         <text x="78" y="138" textAnchor="end" fontSize="11" letterSpacing="1">
           CANADA
         </text>
 
         <circle cx="305" cy="225" r="5" className="fill-accent-deep" />
-        {/* Offset down and to the right of the dot, clear of both routes converging around (300-310, 218-232). */}
+        {/* Offset down and to the right of the dot, clear of both routes converging at (305, 225). */}
         <text x="322" y="254" textAnchor="start" fontSize="11" letterSpacing="1">
           INDIA
         </text>
