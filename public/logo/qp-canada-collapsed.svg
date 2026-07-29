@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 130" width="440" height="260">
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600&amp;display=swap');
+    </style>
+    <linearGradient id="qGradCAC" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#7a0010"/>
+          <stop offset="20%" stop-color="#C8102E"/>
+          <stop offset="40%" stop-color="#e86060"/>
+          <stop offset="50%" stop-color="#ffffff"/>
+          <stop offset="60%" stop-color="#e03030"/>
+          <stop offset="75%" stop-color="#C8102E"/>
+          <stop offset="88%" stop-color="#ff9999"/>
+          <stop offset="100%" stop-color="#ffffff"/>
+    </linearGradient>
+    <linearGradient id="pGradCAC" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#7a0010"/>
+          <stop offset="22%" stop-color="#C8102E"/>
+          <stop offset="42%" stop-color="#e86060"/>
+          <stop offset="50%" stop-color="#ffffff"/>
+          <stop offset="60%" stop-color="#e03030"/>
+          <stop offset="78%" stop-color="#C8102E"/>
+          <stop offset="100%" stop-color="#7a0010"/>
+    </linearGradient>
+  </defs>
+  <text x="20" y="105" 
+        font-family="Cormorant Garamond, Georgia, serif" 
+        font-weight="600" 
+        font-size="100"
+        fill="url(#qGradCAC)">Q</text>
+  <text x="110" y="105" 
+        font-family="Cormorant Garamond, Georgia, serif" 
+        font-weight="600" 
+        font-size="100"
+        fill="url(#pGradCAC)">P</text>
+</svg>
