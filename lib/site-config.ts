@@ -14,7 +14,7 @@ export const siteConfig = {
   tagline: "Trade & Investment",
   description:
     "QP Quintet Ventures Canada Inc. is a bidirectional trade and investment company building the commercial channels, distribution infrastructure, and capital pathways connecting Canada and India. Our first trade lines are in active development, with capability designed to extend across categories as opportunity leads.",
-  contactEmail: "hello@qpquintet.ca",
+  contactEmail: "admin@qpquintet.ca",
   headOfficeLocation: "Victoria, Canada",
 } as const;
 
