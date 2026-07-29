@@ -69,8 +69,7 @@ export async function POST(request: Request) {
   try {
     const resend = new Resend(resendApiKey);
     const { error } = await resend.emails.send({
-      // TODO: switch to an @qpquintet.ca sender once that domain is verified in Resend.
-      from: "QP Quintet Website <onboarding@resend.dev>",
+      from: "QP Quintet Website <qpquintet.web@tabmonk.com>",
       to: siteConfig.contactEmail,
       replyTo: email,
       subject: `New contact form submission from ${name}`,

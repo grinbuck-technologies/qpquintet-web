@@ -73,7 +73,7 @@ Both must pass with zero errors before opening a PR.
 |---|---|---|
 | `RESEND_API_KEY` | Yes, for the contact form to send email | Resend API key used by `app/api/contact/route.ts`. Get one at [resend.com/api-keys](https://resend.com/api-keys). |
 
-The contact form currently sends from Resend's default sending domain (`onboarding@resend.dev`), since `qpquintet.ca` is not yet verified as a sending domain in Resend. See the `TODO` comment in `app/api/contact/route.ts` — update the `from` address there once the domain is verified.
+The contact form sends from `qpquintet.web@tabmonk.com`, using `tabmonk.com` as the verified sending domain in Resend (`qpquintet.ca` itself is not yet verified there).
 
 ## Deployment
 
