@@ -100,6 +100,10 @@ This site is deployed via **Vercel**. For the contact form to work in production
 
 This isn't enforced by the compiler — it exists because that exact phrasing was independently reintroduced into multiple sections of the site across earlier revisions, traced back to `siteConfig.description` being the one field new copy kept echoing. If you're writing new copy anywhere on the site, read that comment first.
 
+## Recent Changes
+
+- Added real team portrait photos to the About page (previously initials-only placeholders), with cropping fixed to prevent top-of-head cutoff. See #7.
+
 ## Contributing
 
-Changes are made on the `core-implementation` branch and go to `main` via pull request, reviewed by Sarshad.
+Every change starts with a GitHub issue describing what will be done. Work happens on a dedicated branch named after that issue (e.g. `issue-7-add-founder-images`), never on a shared or reused branch name. Open a pull request from that branch into `main`, linking the issue (e.g. `Closes #7` in the PR description), for review by Sarshad. Delete the branch immediately after the PR merges.

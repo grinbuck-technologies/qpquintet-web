@@ -6,6 +6,7 @@ interface Person {
   bio: string;
   meta: string[];
   link?: { label: string; href: string };
+  imageSrc?: string;
 }
 
 const INDIA_TEAM: Person[] = [
@@ -15,6 +16,7 @@ const INDIA_TEAM: Person[] = [
     bio: "Alokesh has spent three decades building companies, not just running them — starting with Machhli Baba Foods, which he founded and grew into a familiar name across Kolkata, and continuing through a term as President of the Calcutta Management Association. At QP Quintet, he runs operations: sourcing, structuring, and making sure the business functions on both sides of the ocean.",
     meta: ["Kolkata, IN", "MBA, IISWBM", "Executive Leadership, IIM Ahmedabad"],
     link: { label: "Check MBF out!", href: "https://machhlibabafries.com/" },
+    imageSrc: "/team/alokesh-portrait.jpg",
   },
   {
     name: "Dr. Sareeha Abubaker",
@@ -29,6 +31,7 @@ const INDIA_TEAM: Person[] = [
       label: "Check Dr. Abubaker's website out!",
       href: "https://kolkatagynaecologist.com/",
     },
+    imageSrc: "/team/sareeha-portrait.jpeg",
   },
   {
     name: "Sarnaz Abubaker",
@@ -39,6 +42,7 @@ const INDIA_TEAM: Person[] = [
       "B.Pharm, Jadavpur University",
       "MBA (Finance), IISWBM, Kolkata",
     ],
+    imageSrc: "/team/sarnaz-portrait.jpeg",
   },
   {
     name: "Sarveen Abubaker",
@@ -49,6 +53,7 @@ const INDIA_TEAM: Person[] = [
       "MS Journalism, Columbia University",
       "BA/MA English Literature, Presidency College",
     ],
+    imageSrc: "/team/sarveen-portrait.jpeg",
   },
 ];
 
@@ -63,12 +68,14 @@ const CANADA_TEAM: Person[] = [
       "MSc IT, De Montfort University",
     ],
     link: { label: "Check Grinbuck out!", href: "https://grinbuck.com" },
+    imageSrc: "/team/sarshad-portrait.jpeg",
   },
   {
     name: "Kavita Uttam",
     title: "Co-Founder & Director",
     bio: "Kavita built her career in healthcare operations — 17 years across clinical leadership and nuclear medicine safety, work that leaves no room for error. At QP Quintet, she leads research, marketing, and client acquisition, and is usually the one turning a new relationship into a working partnership.",
     meta: ["Victoria, CA", "BSc Biology, UBC", "Honours Degree, BCIT"],
+    imageSrc: "/team/kavita-portrait.jpeg",
   },
 ];
 
@@ -100,7 +107,7 @@ function PersonCard({ person, borderSide }: PersonCardProps) {
 
   return (
     <div className={borderClasses}>
-      <PersonAvatar name={person.name} />
+      <PersonAvatar name={person.name} imageSrc={person.imageSrc} />
       <h3 className="font-display mt-5 text-2xl md:text-3xl">{person.name}</h3>
       <p className="font-label mt-1 text-xs font-bold uppercase tracking-wide text-accent">
         {person.title}
